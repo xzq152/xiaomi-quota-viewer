@@ -1,0 +1,56 @@
+{
+  "name": "xiaomi-quota-viewer",
+  "displayName": "小米模型额度查看器",
+  "description": "在状态栏显示小米模型 API 额度使用情况",
+  "version": "1.0.1",
+  "publisher": "xiaomi-demo",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "小米模型额度",
+      "properties": {
+        "xiaomiQuota.cookie": {
+          "type": "string",
+          "default": "",
+          "description": "小米平台 Cookie（从浏览器开发者工具获取）"
+        },
+        "xiaomiQuota.refreshInterval": {
+          "type": "number",
+          "default": 60,
+          "description": "自动刷新间隔（秒），设为 0 禁用自动刷新"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "xiaomiQuota.setCookie",
+        "title": "小米额度: 设置 Cookie"
+      },
+      {
+        "command": "xiaomiQuota.refresh",
+        "title": "小米额度: 刷新额度"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^2.22.0",
+    "typescript": "^5.3.0"
+  }
+}
